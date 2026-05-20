@@ -1,7 +1,11 @@
 """
-Lab 2: Named Entity Recognition using Conditional Random Fields (CRF)
-High-performance NER system with feature engineering and comparative analysis
+Course: Natural Language Processing
+Academic Year: 2025-2026
+Student Portfolio Submission
+
+Lab 2 CRF NER
 """
+
 
 import numpy as np
 import pandas as pd
@@ -289,19 +293,19 @@ if __name__ == "__main__":
     print("="*70)
     
     # Load data
-    print("\n1. LOADING NER DATA...")
+    print("\n[*] Loading ner data...")
     data = NERDataLoader.load_conll2003_demo()
     print(f"   Loaded {len(data)} annotated samples")
     print(f"   Sample: {data[0]}")
     
     # Split data
-    print("\n2. PREPARING DATA...")
+    print("\n[*] Preparing data...")
     train_data, test_data = train_test_split(data, test_size=0.3, random_state=42)
     print(f"   Training set: {len(train_data)} sentences")
     print(f"   Test set: {len(test_data)} sentences")
     
     # Initialize CRF model
-    print("\n3. TRAINING CRF MODEL...")
+    print("\n[*] Training crf model...")
     ner_model = CRF_NER()
     
     # Prepare features
@@ -312,7 +316,7 @@ if __name__ == "__main__":
     ner_model.train(X_train, y_train)
     
     # Evaluate
-    print("\n4. EVALUATING MODEL...")
+    print("\n[*] Evaluating model...")
     y_pred = ner_model.predict(X_test)
     
     # Flatten for evaluation
@@ -330,7 +334,7 @@ if __name__ == "__main__":
     print(f"   Token-level F1: {token_metrics['f1']:.4f}")
     
     # Per-entity metrics
-    print("\n5. PER-ENTITY PERFORMANCE...")
+    print("\n[*] Per-entity performance...")
     entity_metrics = NER_Evaluation.per_entity_metrics(all_true, all_pred, ner_model.entities)
     for entity, metrics in entity_metrics.items():
         print(f"\n   {entity}:")
@@ -340,7 +344,7 @@ if __name__ == "__main__":
         print(f"      Support: {metrics['support']}")
     
     # Feature ablation study
-    print("\n6. FEATURE ABLATION STUDY...")
+    print("\n[*] Feature ablation study...")
     print("   Testing with/without POS tags...")
     
     X_train_no_pos, y_train_no_pos = ner_model.prepare_data(train_data, use_pos=False)
@@ -363,7 +367,7 @@ if __name__ == "__main__":
     print(f"   POS tag contribution: {(token_metrics['f1'] - metrics_no_pos['f1']):.4f}")
     
     # Example predictions
-    print("\n7. EXAMPLE PREDICTIONS...")
+    print("\n[*] Example predictions...")
     example_sent = ["John", "works", "at", "Google", "in", "New", "York"]
     predictions = ner_model.predict_single(example_sent)
     print(f"\n   Sentence: {' '.join(example_sent)}")
@@ -371,7 +375,7 @@ if __name__ == "__main__":
         print(f"      {word:15s} → {tag}")
     
     # Visualization
-    print("\n8. GENERATING VISUALIZATIONS...")
+    print("\n[*] Generating visualizations...")
     
     # Entity distribution
     entity_counts_true = {}
@@ -392,7 +396,7 @@ if __name__ == "__main__":
     
     plt.tight_layout()
     plt.savefig("entity_distribution.png", dpi=150)
-    print("   ✓ Saved entity_distribution.png")
+    print("    -> Saved: Saved entity_distribution.png")
     
     # F1 scores comparison
     f1_scores = {entity: metrics['f1'] for entity, metrics in entity_metrics.items()}
@@ -405,10 +409,10 @@ if __name__ == "__main__":
         plt.text(f1 + 0.02, i, f"{f1:.4f}", va='center')
     plt.tight_layout()
     plt.savefig("entity_f1_scores.png", dpi=150)
-    print("   ✓ Saved entity_f1_scores.png")
+    print("    -> Saved: Saved entity_f1_scores.png")
     
     # Save results
-    print("\n9. SAVING RESULTS...")
+    print("\n[*] Saving results...")
     results_df = pd.DataFrame({
         'Metric': ['Accuracy', 'Precision', 'Recall', 'F1-Score'],
         'Score': [
@@ -419,7 +423,7 @@ if __name__ == "__main__":
         ]
     })
     results_df.to_csv("evaluation_results.csv", index=False)
-    print("   ✓ Saved evaluation_results.csv")
+    print("    -> Saved: Saved evaluation_results.csv")
     
     print("\n" + "="*70)
     print("Lab 2 Complete!")

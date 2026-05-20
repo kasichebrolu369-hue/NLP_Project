@@ -1,0 +1,4 @@
+Model,Vocab Size,Vector Dim
+Skip-Gram,43,100
+CBOW,43,100
+FastText,43,100

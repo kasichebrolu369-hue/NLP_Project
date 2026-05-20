@@ -1,7 +1,11 @@
 """
-Lab 7: Language Modeling using GPT and Autoregressive Generation
-Implementation of decoding strategies: greedy, top-k sampling, nucleus sampling
+Course: Natural Language Processing
+Academic Year: 2025-2026
+Student Portfolio Submission
+
+Lab 7 GPT Language Modeling
 """
+
 
 import numpy as np
 import torch
@@ -99,15 +103,14 @@ class LanguageGenerator:
         
         return generated
 
-print("="*70)
-print("LAB 7: LANGUAGE MODELING WITH GPT AND AUTOREGRESSIVE GENERATION")
-print("="*70)
+print("
+--- Starting Lab 7 GPT Language Modeling ---")
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print(f"\nUsing device: {device}")
 
 # 1. Setup
-print("\n1. SETTING UP LANGUAGE MODEL...")
+print("\n[*] Setting up language model...")
 vocab_size = 1000
 embedding_dim = 128
 hidden_dim = 256
@@ -118,7 +121,7 @@ model = model.to(device)
 print(f"   ✓ Model initialized with {sum(p.numel() for p in model.parameters()):,} parameters")
 
 # 2. Training (dummy training on random data)
-print("\n2. TRAINING LANGUAGE MODEL...")
+print("\n[*] Training language model...")
 criterion = nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
@@ -153,7 +156,7 @@ for epoch in range(10):
         print(f"   Epoch {epoch+1}/10: Loss = {avg_loss:.4f}")
 
 # 3. Text generation
-print("\n3. GENERATING TEXT WITH DIFFERENT STRATEGIES...")
+print("\n[*] Generating text with different strategies...")
 generator = LanguageGenerator(model, vocab_size, device=device, temperature=1.0)
 
 prompt = [1, 2, 3]  # Starting prompt
@@ -168,7 +171,7 @@ print(f"   Top-k (k=5):   {topk_output[:10]} ...")
 print(f"   Nucleus (p=0.9): {nucleus_output[:10]} ...")
 
 # 4. Perplexity calculation
-print("\n4. CALCULATING PERPLEXITY...")
+print("\n[*] Calculating perplexity...")
 model.eval()
 test_data = torch.randint(0, vocab_size, (50, 20)).to(device)
 test_targets = torch.randint(0, vocab_size, (50, 20)).to(device)
@@ -181,7 +184,7 @@ with torch.no_grad():
 print(f"   Perplexity: {perplexity:.4f}")
 
 # 5. Visualizations
-print("\n5. GENERATING VISUALIZATIONS...")
+print("\n[*] Generating visualizations...")
 
 plt.figure(figsize=(10, 6))
 plt.plot(train_losses, marker='o', color='blue', linewidth=2)
@@ -191,7 +194,7 @@ plt.title('Language Model Training - Perplexity Convergence')
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
 plt.savefig("training_curve.png", dpi=150)
-print("   ✓ Saved training_curve.png")
+print("    -> Saved: Saved training_curve.png")
 
 # Decoding strategy comparison
 decoding_methods = ['Greedy', 'Top-k (k=5)', 'Nucleus (p=0.9)']
@@ -204,7 +207,7 @@ plt.title('Generated Text Length by Decoding Strategy')
 plt.ylim(0, max_gen_len + 10)
 plt.tight_layout()
 plt.savefig("decoding_comparison.png", dpi=150)
-print("   ✓ Saved decoding_comparison.png")
+print("    -> Saved: Saved decoding_comparison.png")
 
 # Save results
 results = pd.DataFrame({
@@ -212,8 +215,7 @@ results = pd.DataFrame({
     'Value': [train_losses[-1], perplexity, vocab_size, hidden_dim]
 })
 results.to_csv("evaluation_results.csv", index=False)
-print("   ✓ Saved evaluation_results.csv")
+print("    -> Saved: Saved evaluation_results.csv")
 
-print("\n" + "="*70)
-print("Lab 7 Complete!")
-print("="*70)
+print("
+--- Lab 7 GPT Language Modeling Execution Finished ---")

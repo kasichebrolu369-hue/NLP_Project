@@ -1,0 +1,7 @@
+Metric,Value
+Total Samples,200
+Train Samples,160
+Test Samples,40
+Baseline Accuracy,1.0000
+Advanced Accuracy,1.0000
+Improvement %,+0.00%

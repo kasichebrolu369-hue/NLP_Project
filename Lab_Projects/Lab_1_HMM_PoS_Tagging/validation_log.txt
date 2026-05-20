@@ -1,0 +1,60 @@
+STDOUT:
+======================================================================
+LAB 1: HMM PoS TAGGING WITH VITERBI DECODING
+======================================================================
+
+1. LOADING TRAINING DATA...
+   Loaded 1000 sentences from Brown Corpus
+   Training set: 800 sentences
+   Test set: 200 sentences
+
+2. TRAINING HMM MODEL...
+✓ Training complete: 3996 vocab items, 142 tags
+
+3. TESTING HMM MODEL...
+
+   Testing Viterbi Decoding...
+   Testing Greedy Decoding...
+
+4. COMPARING WITH NLTK TAGGER...
+
+
+STDERR:
+Traceback (most recent call last):
+  File "b:\Data Science Projects(Own)\NLP_project\Lab_Projects\Lab_1_HMM_PoS_Tagging\hmm_pos_tagger.py", line 368, in <module>
+    nltk_tags = [tag for word, tag in nltk.pos_tag(list(words))]
+                                      ~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\basav\AppData\Roaming\Python\Python313\site-packages\nltk\tag\__init__.py", line 168, in pos_tag
+    tagger = _get_tagger(lang)
+  File "C:\Users\basav\AppData\Roaming\Python\Python313\site-packages\nltk\tag\__init__.py", line 110, in _get_tagger
+    tagger = PerceptronTagger()
+  File "C:\Users\basav\AppData\Roaming\Python\Python313\site-packages\nltk\tag\perceptron.py", line 183, in __init__
+    self.load_from_json(lang, loc)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Users\basav\AppData\Roaming\Python\Python313\site-packages\nltk\tag\perceptron.py", line 279, in load_from_json
+    loc = find(f"taggers/averaged_perceptron_tagger_{lang}/")
+  File "C:\Users\basav\AppData\Roaming\Python\Python313\site-packages\nltk\data.py", line 738, in find
+    raise LookupError(resource_not_found)
+LookupError: 
+**********************************************************************
+  Resource 'averaged_perceptron_tagger_eng' not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  >>> import nltk
+  >>> nltk.download('averaged_perceptron_tagger_eng')
+
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load 'taggers/averaged_perceptron_tagger_eng/'
+
+  Searched in:
+    - 'C:\\Users\\basav/nltk_data'
+    - 'C:\\python313\\nltk_data'
+    - 'C:\\python313\\share\\nltk_data'
+    - 'C:\\python313\\lib\\nltk_data'
+    - 'C:\\Users\\basav\\AppData\\Roaming\\nltk_data'
+    - 'C:\\nltk_data'
+    - 'D:\\nltk_data'
+    - 'E:\\nltk_data'
+**********************************************************************
+

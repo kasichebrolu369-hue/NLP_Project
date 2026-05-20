@@ -1,0 +1,53 @@
+STDOUT:
+======================================================================
+LAB 5: DISTRIBUTIONAL SEMANTICS - WORD EMBEDDINGS
+======================================================================
+
+1. TRAINING WORD2VEC (SKIP-GRAM)...
+   ✓ Word2Vec Skip-Gram vocabulary size: 43
+
+2. TRAINING WORD2VEC (CBOW)...
+   ✓ Word2Vec CBOW vocabulary size: 43
+
+3. TRAINING FASTTEXT...
+   ✓ FastText vocabulary size: 43
+
+4. WORD SIMILARITY ANALYSIS...
+
+   king vs queen:
+      Skip-Gram: 0.9957
+      CBOW:      0.9888
+      FastText:  0.9979
+
+   king vs prince:
+      Skip-Gram: 0.9940
+      CBOW:      0.9878
+      FastText:  0.9984
+
+   learning vs machine:
+      Skip-Gram: 0.9964
+      CBOW:      0.9925
+      FastText:  0.9990
+
+   dog vs cat:
+      Skip-Gram: 0.9956
+      CBOW:      0.9884
+      FastText:  0.9902
+
+5. WORD ANALOGIES...
+   (Analogy task requires sufficient vocabulary)
+
+6. GENERATING VISUALIZATIONS...
+   ✓ Saved embeddings_pca.png
+   Computing t-SNE (this may take a moment)...
+   ✓ Saved embeddings_tsne.png
+
+7. EMBEDDING MODEL COMPARISON...
+   ✓ Saved embedding_comparison.csv
+
+======================================================================
+Lab 5 Complete!
+======================================================================
+
+
+STDERR:

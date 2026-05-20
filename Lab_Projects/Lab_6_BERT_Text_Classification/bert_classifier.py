@@ -1,7 +1,11 @@
 """
-Lab 6: Fine-Tuning BERT for Text Classification
-Multi-class text classification using Hugging Face Transformers
+Course: Natural Language Processing
+Academic Year: 2025-2026
+Student Portfolio Submission
+
+Lab 6 BERT Text Classification
 """
+
 
 import torch
 import pandas as pd
@@ -57,16 +61,15 @@ class TextDataset(Dataset):
             'labels': torch.tensor(label, dtype=torch.long)
         }
 
-print("="*70)
-print("LAB 6: FINE-TUNING BERT FOR TEXT CLASSIFICATION")
-print("="*70)
+print("
+--- Starting Lab 6 BERT Text Classification ---")
 
 try:
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"\nUsing device: {device}")
     
     # 1. Load pretrained model
-    print("\n1. LOADING PRETRAINED BERT MODEL...")
+    print("\n[*] Loading pretrained bert model...")
     model_name = "distilbert-base-uncased"  # Using DistilBERT for efficiency
     tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=2)
@@ -74,7 +77,7 @@ try:
     print(f"   ✓ Loaded {model_name}")
     
     # 2. Prepare data
-    print("\n2. PREPARING DATA...")
+    print("\n[*] Preparing data...")
     texts = [text for text, _ in SAMPLE_DATA]
     labels = [label for _, label in SAMPLE_DATA]
     
@@ -90,7 +93,7 @@ try:
     print(f"   Train samples: {len(train_dataset)}, Val samples: {len(val_dataset)}")
     
     # 3. Fine-tune
-    print("\n3. FINE-TUNING MODEL...")
+    print("\n[*] Fine-tuning model...")
     optimizer = optim.AdamW(model.parameters(), lr=2e-5)
     criterion = torch.nn.CrossEntropyLoss()
     
@@ -138,7 +141,7 @@ try:
         print(f"   Epoch {epoch+1}/3 - Loss: {avg_loss:.4f}, Val Acc: {val_acc:.4f}")
     
     # 4. Evaluate
-    print("\n4. EVALUATION...")
+    print("\n[*] Evaluation...")
     precision, recall, f1, _ = precision_recall_fscore_support(val_true, val_preds, average='weighted')
     print(f"   Accuracy:  {val_acc:.4f}")
     print(f"   Precision: {precision:.4f}")
@@ -146,7 +149,7 @@ try:
     print(f"   F1-Score:  {f1:.4f}")
     
     # 5. Visualizations
-    print("\n5. SAVING VISUALIZATIONS...")
+    print("\n[*] Saving visualizations...")
     plt.figure(figsize=(10, 6))
     plt.plot(train_losses, marker='o', label='Train Loss')
     plt.xlabel('Epoch')
@@ -156,7 +159,7 @@ try:
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
     plt.savefig("training_curve.png", dpi=150)
-    print("   ✓ Saved training_curve.png")
+    print("    -> Saved: Saved training_curve.png")
     
     # Save results
     results = pd.DataFrame({
@@ -164,12 +167,11 @@ try:
         'Score': [val_acc, precision, recall, f1]
     })
     results.to_csv("evaluation_results.csv", index=False)
-    print("   ✓ Saved evaluation_results.csv")
+    print("    -> Saved: Saved evaluation_results.csv")
     
 except Exception as e:
     print(f"Error: {e}")
     print("Make sure to install transformers: pip install transformers")
 
-print("\n" + "="*70)
-print("Lab 6 Complete!")
-print("="*70)
+print("
+--- Lab 6 BERT Text Classification Execution Finished ---")

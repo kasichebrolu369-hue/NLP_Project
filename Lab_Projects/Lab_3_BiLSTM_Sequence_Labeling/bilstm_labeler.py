@@ -1,7 +1,11 @@
 """
-Lab 3: Neural PoS Tagging and NER using BiLSTM
-Deep learning-based sequence labeling with recurrent neural networks
+Course: Natural Language Processing
+Academic Year: 2025-2026
+Student Portfolio Submission
+
+Lab 3 BiLSTM Sequence Labeling
 """
+
 
 import numpy as np
 import pandas as pd
@@ -322,12 +326,12 @@ if __name__ == "__main__":
     print(f"\nUsing device: {device}")
     
     # Load data
-    print("\n1. LOADING TRAINING DATA...")
+    print("\n[*] Loading training data...")
     sentences = brown.tagged_sents()[:500]
     print(f"   Loaded {len(sentences)} sentences")
     
     # Build vocabulary
-    print("\n2. BUILDING VOCABULARY...")
+    print("\n[*] Building vocabulary...")
     vocab = Vocabulary()
     vocab.build_from_sentences(sentences, min_freq=2)
     
@@ -337,7 +341,7 @@ if __name__ == "__main__":
     test_sentences = sentences[train_size:]
     
     # Create datasets
-    print("\n3. CREATING DATASETS...")
+    print("\n[*] Creating datasets...")
     train_dataset = SequenceLabelingDataset(train_sentences, vocab)
     test_dataset = SequenceLabelingDataset(test_sentences, vocab)
     
@@ -350,7 +354,7 @@ if __name__ == "__main__":
     print(f"   Test batches: {len(test_loader)}")
     
     # Initialize model
-    print("\n4. INITIALIZING BiLSTM MODEL...")
+    print("\n[*] Initializing bilstm model...")
     model = BiLSTMSequenceLabeler(
         vocab_size=len(vocab.word2idx),
         num_tags=len(vocab.tag2idx),
@@ -364,12 +368,12 @@ if __name__ == "__main__":
     print(f"   Model parameters: {total_params:,}")
     
     # Train model
-    print("\n5. TRAINING MODEL...")
+    print("\n[*] Training model...")
     trainer = BiLSTMTrainer(model, device=device)
     best_acc = trainer.train(train_loader, test_loader, epochs=15, lr=0.001)
     
     # Evaluate
-    print("\n6. EVALUATING MODEL...")
+    print("\n[*] Evaluating model...")
     all_preds, all_tags = trainer.predict(test_loader)
     
     accuracy = accuracy_score(all_tags, all_preds)
@@ -383,7 +387,7 @@ if __name__ == "__main__":
     print(f"   F1-Score:  {f1:.4f}")
     
     # Comparison with random embeddings
-    print("\n7. TESTING WITH RANDOM EMBEDDINGS...")
+    print("\n[*] Testing with random embeddings...")
     model_random = BiLSTMSequenceLabeler(
         vocab_size=len(vocab.word2idx),
         num_tags=len(vocab.tag2idx),
@@ -403,7 +407,7 @@ if __name__ == "__main__":
     print(f"   Improvement: {(accuracy - acc_random):.4f}")
     
     # Visualizations
-    print("\n8. GENERATING VISUALIZATIONS...")
+    print("\n[*] Generating visualizations...")
     
     # Training curves
     fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -426,7 +430,7 @@ if __name__ == "__main__":
     
     plt.tight_layout()
     plt.savefig("training_curves.png", dpi=150)
-    print("   ✓ Saved training_curves.png")
+    print("    -> Saved: Saved training_curves.png")
     
     # Per-tag accuracy
     per_tag_acc = {}
@@ -446,10 +450,10 @@ if __name__ == "__main__":
     plt.ylim([0, 1])
     plt.tight_layout()
     plt.savefig("per_tag_accuracy.png", dpi=150)
-    print("   ✓ Saved per_tag_accuracy.png")
+    print("    -> Saved: Saved per_tag_accuracy.png")
     
     # Save results
-    print("\n9. SAVING RESULTS...")
+    print("\n[*] Saving results...")
     results = {
         'Model': ['BiLSTM (Learned)', 'BiLSTM (Random)'],
         'Accuracy': [accuracy, acc_random],
@@ -459,7 +463,7 @@ if __name__ == "__main__":
     }
     results_df = pd.DataFrame(results)
     results_df.to_csv("evaluation_results.csv", index=False)
-    print("   ✓ Saved evaluation_results.csv")
+    print("    -> Saved: Saved evaluation_results.csv")
     
     print("\n" + "="*70)
     print("Lab 3 Complete!")

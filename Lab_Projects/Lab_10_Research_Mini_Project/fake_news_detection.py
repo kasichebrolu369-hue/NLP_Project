@@ -1,7 +1,11 @@
 """
-Lab 10: Research-Oriented NLP Mini Project - Fake News Detection
-End-to-end research-grade NLP application with literature, baseline, advanced model, and analysis
+Course: Natural Language Processing
+Academic Year: 2025-2026
+Student Portfolio Submission
+
+Lab 10 Research Mini Project
 """
+
 
 import pandas as pd
 import numpy as np
@@ -18,12 +22,11 @@ import seaborn as sns
 import warnings
 warnings.filterwarnings('ignore')
 
-print("="*70)
-print("LAB 10: RESEARCH PROJECT - FAKE NEWS DETECTION")
-print("="*70)
+print("
+--- Starting Lab 10 Research Mini Project ---")
 
 # 1. Dataset preparation
-print("\n1. PREPARING DATASET...")
+print("\n[*] Preparing dataset...")
 
 # Sample fake news dataset
 fake_news_data = [
@@ -52,7 +55,7 @@ print(f"   Test samples: {len(X_test)}")
 print(f"   True: {sum(y_train)}, Fake: {len(y_train) - sum(y_train)}")
 
 # 2. Baseline model (Classical ML)
-print("\n2. BASELINE MODEL - TF-IDF + RANDOM FOREST...")
+print("\n[*] Baseline model - tf-idf + random forest...")
 
 vectorizer = TfidfVectorizer(max_features=500, ngram_range=(1, 2))
 X_train_tfidf = vectorizer.fit_transform(X_train)
@@ -73,7 +76,7 @@ print(f"   Recall:    {baseline_recall:.4f}")
 print(f"   F1-Score:  {baseline_f1:.4f}")
 
 # 3. Advanced model (LSTM)
-print("\n3. ADVANCED MODEL - LSTM CLASSIFIER...")
+print("\n[*] Advanced model - lstm classifier...")
 
 class TextDataset(Dataset):
     def __init__(self, texts, labels, vocab_size=1000, max_len=100):
@@ -187,7 +190,7 @@ print(f"   Recall:    {advanced_recall:.4f}")
 print(f"   F1-Score:  {advanced_f1:.4f}")
 
 # 4. Comparative analysis
-print("\n4. COMPARATIVE ANALYSIS...")
+print("\n[*] Comparative analysis...")
 
 comparison_data = {
     'Model': ['Baseline (TF-IDF+RF)', 'Advanced (LSTM)'],
@@ -204,7 +207,7 @@ improvement = (advanced_acc - baseline_acc) / baseline_acc * 100
 print(f"\n   Improvement: {improvement:+.2f}%")
 
 # 5. Error analysis
-print("\n5. ERROR ANALYSIS...")
+print("\n[*] Error analysis...")
 
 # Misclassified samples
 test_dataset_eval = TextDataset(X_test, y_test)
@@ -225,7 +228,7 @@ if advanced_errors:
         print(f"      True: {label_str}, Predicted: {pred_str}")
 
 # 6. Visualizations
-print("\n6. GENERATING VISUALIZATIONS...")
+print("\n[*] Generating visualizations...")
 
 # Model comparison
 fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -252,7 +255,7 @@ axes[1, 1].set_ylim([0, 1])
 
 plt.tight_layout()
 plt.savefig("model_comparison.png", dpi=150)
-print("   ✓ Saved model_comparison.png")
+print("    -> Saved: Saved model_comparison.png")
 
 # Training curve
 plt.figure(figsize=(10, 6))
@@ -263,7 +266,7 @@ plt.title('LSTM Training Convergence')
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
 plt.savefig("training_curve.png", dpi=150)
-print("   ✓ Saved training_curve.png")
+print("    -> Saved: Saved training_curve.png")
 
 # Confusion matrices
 fig, axes = plt.subplots(1, 2, figsize=(14, 5))
@@ -285,13 +288,13 @@ axes[1].set_xlabel('Predicted')
 
 plt.tight_layout()
 plt.savefig("confusion_matrices.png", dpi=150)
-print("   ✓ Saved confusion_matrices.png")
+print("    -> Saved: Saved confusion_matrices.png")
 
 # 7. Save comprehensive results
-print("\n7. SAVING RESULTS...")
+print("\n[*] Saving results...")
 
 comparison_df.to_csv("model_comparison_results.csv", index=False)
-print("   ✓ Saved model_comparison_results.csv")
+print("    -> Saved: Saved model_comparison_results.csv")
 
 # Summary statistics
 summary = pd.DataFrame({
@@ -301,11 +304,10 @@ summary = pd.DataFrame({
               f"{advanced_acc:.4f}", f"{improvement:+.2f}%"]
 })
 summary.to_csv("summary_statistics.csv", index=False)
-print("   ✓ Saved summary_statistics.csv")
+print("    -> Saved: Saved summary_statistics.csv")
 
-print("\n" + "="*70)
-print("Lab 10 Complete - Research Project Finished!")
-print("="*70)
+print("
+--- Lab 10 Research Mini Project Execution Finished ---")
 print("\nProject Output:")
 print("  - Model comparison and evaluation")
 print("  - Error analysis and misclassification patterns")

@@ -1,7 +1,11 @@
 """
-Lab 9: Multilingual NLP and Cross-Lingual Embeddings
-Multilingual embeddings and cross-lingual transfer learning
+Course: Natural Language Processing
+Academic Year: 2025-2026
+Student Portfolio Submission
+
+Lab 9 Multilingual NLP
 """
+
 
 import pandas as pd
 import numpy as np
@@ -10,12 +14,11 @@ from collections import Counter
 import warnings
 warnings.filterwarnings('ignore')
 
-print("="*70)
-print("LAB 9: MULTILINGUAL NLP AND CROSS-LINGUAL EMBEDDINGS")
-print("="*70)
+print("
+--- Starting Lab 9 Multilingual NLP ---")
 
 # 1. Multilingual data
-print("\n1. PREPARING MULTILINGUAL DATA...")
+print("\n[*] Preparing multilingual data...")
 
 multilingual_data = {
     'English': [
@@ -44,7 +47,7 @@ print(f"   Languages: {list(multilingual_data.keys())}")
 print(f"   Sentences per language: {len(multilingual_data['English'])}")
 
 # 2. Language statistics
-print("\n2. LANGUAGE STATISTICS...")
+print("\n[*] Language statistics...")
 
 stats = {}
 for lang, sentences in multilingual_data.items():
@@ -64,7 +67,7 @@ for lang, sentences in multilingual_data.items():
     print(f"      Vocabulary size: {vocab_size}")
 
 # 3. Cross-lingual similarity (mock implementation)
-print("\n3. CROSS-LINGUAL SIMILARITY...")
+print("\n[*] Cross-lingual similarity...")
 
 # Language pairs and expected similarities
 language_pairs = [
@@ -87,7 +90,7 @@ for pair, sim in mock_similarities.items():
     print(f"      {pair[0]} ↔ {pair[1]}: {sim:.4f}")
 
 # 4. Language family relationships
-print("\n4. LANGUAGE FAMILY ANALYSIS...")
+print("\n[*] Language family analysis...")
 
 language_families = {
     'Germanic': ['English', 'German'],
@@ -99,7 +102,7 @@ for family, languages in language_families.items():
     print(f"      {family}: {', '.join(languages)}")
 
 # 5. Zero-shot transfer scenario
-print("\n5. ZERO-SHOT TRANSFER LEARNING SCENARIO...")
+print("\n[*] Zero-shot transfer learning scenario...")
 
 print("\n   Scenario: Train sentiment classifier on English, test on Spanish")
 print("   Steps:")
@@ -118,7 +121,7 @@ for lang, acc in zip(transfer_results['Language'], transfer_results['Accuracy'])
     print(f"      {lang}: {acc}")
 
 # 6. Visualizations
-print("\n6. GENERATING VISUALIZATIONS...")
+print("\n[*] Generating visualizations...")
 
 # Language similarity heatmap
 languages_list = ['English', 'Spanish', 'French', 'German']
@@ -137,7 +140,7 @@ sns.heatmap(similarity_matrix, annot=True, fmt='.2f', cmap='coolwarm',
 plt.title('Cross-Lingual Similarity Matrix')
 plt.tight_layout()
 plt.savefig("cross_lingual_similarity.png", dpi=150)
-print("   ✓ Saved cross_lingual_similarity.png")
+print("    -> Saved: Saved cross_lingual_similarity.png")
 
 # Vocabulary size comparison
 vocab_sizes = [stats[lang]['Vocabulary Size'] for lang in languages_list]
@@ -147,7 +150,7 @@ plt.ylabel('Vocabulary Size')
 plt.title('Vocabulary Size by Language')
 plt.tight_layout()
 plt.savefig("vocabulary_comparison.png", dpi=150)
-print("   ✓ Saved vocabulary_comparison.png")
+print("    -> Saved: Saved vocabulary_comparison.png")
 
 # Zero-shot transfer performance
 plt.figure(figsize=(10, 6))
@@ -163,7 +166,7 @@ for i, acc in enumerate(transfer_accs):
     plt.text(i, acc + 0.02, f"{acc:.2%}", ha='center')
 plt.tight_layout()
 plt.savefig("zero_shot_transfer.png", dpi=150)
-print("   ✓ Saved zero_shot_transfer.png")
+print("    -> Saved: Saved zero_shot_transfer.png")
 
 # Save results
 results_df = pd.DataFrame({
@@ -172,8 +175,7 @@ results_df = pd.DataFrame({
     'German-Romance Family': ['Germanic', 'Romance', 'Romance', 'Germanic']
 })
 results_df.to_csv("multilingual_analysis.csv", index=False)
-print("   ✓ Saved multilingual_analysis.csv")
+print("    -> Saved: Saved multilingual_analysis.csv")
 
-print("\n" + "="*70)
-print("Lab 9 Complete!")
-print("="*70)
+print("
+--- Lab 9 Multilingual NLP Execution Finished ---")

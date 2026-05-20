@@ -1,7 +1,11 @@
 """
-Lab 5: Distributional Semantics - Word Embeddings (word2vec, GloVe, FastText)
-Training and analyzing semantic representations
+Course: Natural Language Processing
+Academic Year: 2025-2026
+Student Portfolio Submission
+
+Lab 5 Distributional Semantics
 """
+
 
 import numpy as np
 from gensim.models import Word2Vec, FastText
@@ -24,27 +28,26 @@ CORPUS = [
     "embeddings map words to vector spaces".split(),
 ] * 50
 
-print("="*70)
-print("LAB 5: DISTRIBUTIONAL SEMANTICS - WORD EMBEDDINGS")
-print("="*70)
+print("
+--- Starting Lab 5 Distributional Semantics ---")
 
 # 1. Train Word2Vec (Skip-Gram)
-print("\n1. TRAINING WORD2VEC (SKIP-GRAM)...")
+print("\n[*] Training word2vec (skip-gram)...")
 w2v_sg = Word2Vec(CORPUS, vector_size=100, window=5, min_count=1, sg=1, epochs=10)
 print(f"   ✓ Word2Vec Skip-Gram vocabulary size: {len(w2v_sg.wv)}")
 
 # 2. Train Word2Vec (CBOW)
-print("\n2. TRAINING WORD2VEC (CBOW)...")
+print("\n[*] Training word2vec (cbow)...")
 w2v_cbow = Word2Vec(CORPUS, vector_size=100, window=5, min_count=1, sg=0, epochs=10)
 print(f"   ✓ Word2Vec CBOW vocabulary size: {len(w2v_cbow.wv)}")
 
 # 3. Train FastText
-print("\n3. TRAINING FASTTEXT...")
+print("\n[*] Training fasttext...")
 ft_model = FastText(CORPUS, vector_size=100, window=5, min_count=1, epochs=10)
 print(f"   ✓ FastText vocabulary size: {len(ft_model.wv)}")
 
 # 4. Word similarity analysis
-print("\n4. WORD SIMILARITY ANALYSIS...")
+print("\n[*] Word similarity analysis...")
 test_pairs = [
     ("king", "queen"),
     ("king", "prince"),
@@ -63,7 +66,7 @@ for word1, word2 in test_pairs:
         print(f"      FastText:  {sim_ft:.4f}")
 
 # 5. Word analogies
-print("\n5. WORD ANALOGIES...")
+print("\n[*] Word analogies...")
 try:
     analogy = w2v_sg.wv.most_similar(positive=["king", "woman"], negative=["man"], topn=1)
     print(f"   king - man + woman ≈ {analogy[0][0]} (similarity: {analogy[0][1]:.4f})")
@@ -71,7 +74,7 @@ except:
     print("   (Analogy task requires sufficient vocabulary)")
 
 # 6. Visualizations
-print("\n6. GENERATING VISUALIZATIONS...")
+print("\n[*] Generating visualizations...")
 
 # Get word vectors
 words = list(w2v_sg.wv.index_to_key[:50])
@@ -91,7 +94,7 @@ plt.ylabel("PC2")
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
 plt.savefig("embeddings_pca.png", dpi=150)
-print("   ✓ Saved embeddings_pca.png")
+print("    -> Saved: Saved embeddings_pca.png")
 
 # TSNE visualization
 print("   Computing t-SNE (this may take a moment)...")
@@ -108,10 +111,10 @@ plt.ylabel("t-SNE 2")
 plt.grid(True, alpha=0.3)
 plt.tight_layout()
 plt.savefig("embeddings_tsne.png", dpi=150)
-print("   ✓ Saved embeddings_tsne.png")
+print("    -> Saved: Saved embeddings_tsne.png")
 
 # 7. Model comparison
-print("\n7. EMBEDDING MODEL COMPARISON...")
+print("\n[*] Embedding model comparison...")
 comparison_data = {
     'Model': ['Skip-Gram', 'CBOW', 'FastText'],
     'Vocab Size': [len(w2v_sg.wv), len(w2v_cbow.wv), len(ft_model.wv)],
@@ -119,8 +122,7 @@ comparison_data = {
 }
 comparison_df = pd.DataFrame(comparison_data)
 comparison_df.to_csv("embedding_comparison.csv", index=False)
-print("   ✓ Saved embedding_comparison.csv")
+print("    -> Saved: Saved embedding_comparison.csv")
 
-print("\n" + "="*70)
-print("Lab 5 Complete!")
-print("="*70)
+print("
+--- Lab 5 Distributional Semantics Execution Finished ---")

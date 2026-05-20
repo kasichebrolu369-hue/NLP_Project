@@ -1,0 +1,101 @@
+================================================================================
+NLP LABS COMPLETE VALIDATION REPORT
+Timestamp: 2026-05-19 16:06:26
+================================================================================
+
+Total Labs: 10
+Passed: 5
+Failed: 5
+Pass Rate: 50.0%
+
+DETAILED RESULTS:
+--------------------------------------------------------------------------------
+
+[FAIL] Lab_1_HMM_PoS_Tagging
+      Exit Code: 1
+      Output Files: 0
+      Error: Traceback (most recent call last):
+  File "b:\Data Science Projects(Own)\NLP_project\Lab_Projects\Lab_1_HMM_PoS_Tagging\hmm_pos_tagger.py", line 368, in <module>
+    nltk_tags = [tag for word, tag in 
+      Log: b:\Data Science Projects(Own)\NLP_project\Lab_Projects\Lab_1_HMM_PoS_Tagging\validation_log.txt
+
+[FAIL] Lab_2_CRF_NER
+      Exit Code: 1
+      Output Files: 0
+      Error: Traceback (most recent call last):
+  File "b:\Data Science Projects(Own)\NLP_project\Lab_Projects\Lab_2_CRF_NER\crf_ner.py", line 313, in <module>
+    X_train, y_train = ner_model.prepare_data(train_d
+      Log: b:\Data Science Projects(Own)\NLP_project\Lab_Projects\Lab_2_CRF_NER\validation_log.txt
+
+[FAIL] Lab_3_BiLSTM_Sequence_Labeling
+      Exit Code: 1
+      Output Files: 0
+      Error: Traceback (most recent call last):
+  File "b:\Data Science Projects(Own)\NLP_project\Lab_Projects\Lab_3_BiLSTM_Sequence_Labeling\bilstm_labeler.py", line 369, in <module>
+    best_acc = trainer.train(
+      Log: b:\Data Science Projects(Own)\NLP_project\Lab_Projects\Lab_3_BiLSTM_Sequence_Labeling\validation_log.txt
+
+[FAIL] Lab_4_Transformer_Architecture
+      Exit Code: -1
+      Output Files: 0
+      Error: Timeout (exceeded 300 seconds)
+      Log: b:\Data Science Projects(Own)\NLP_project\Lab_Projects\Lab_4_Transformer_Architecture\validation_log.txt
+
+[PASS] Lab_5_Distributional_Semantics
+      Exit Code: 0
+      Output Files: 3
+      Files Generated:
+        - embeddings_pca.png
+        - embeddings_tsne.png
+        - embedding_comparison.csv
+      Log: b:\Data Science Projects(Own)\NLP_project\Lab_Projects\Lab_5_Distributional_Semantics\validation_log.txt
+
+[FAIL] Lab_6_BERT_Text_Classification
+      Exit Code: -1
+      Output Files: 0
+      Error: Timeout (exceeded 300 seconds)
+      Log: b:\Data Science Projects(Own)\NLP_project\Lab_Projects\Lab_6_BERT_Text_Classification\validation_log.txt
+
+[PASS] Lab_7_GPT_Language_Modeling
+      Exit Code: 0
+      Output Files: 3
+      Files Generated:
+        - decoding_comparison.png
+        - training_curve.png
+        - evaluation_results.csv
+      Log: b:\Data Science Projects(Own)\NLP_project\Lab_Projects\Lab_7_GPT_Language_Modeling\validation_log.txt
+
+[PASS] Lab_8_Knowledge_Graphs_WSD
+      Exit Code: 0
+      Output Files: 3
+      Files Generated:
+        - similarity_matrix.png
+        - synset_distribution.png
+        - word_senses.csv
+      Error: [nltk_data] Downloading package wordnet to
+[nltk_data]     C:\Users\basav\AppData\Roaming\nltk_data...
+[nltk_data]   Package wordnet is already up-to-date!
+
+      Log: b:\Data Science Projects(Own)\NLP_project\Lab_Projects\Lab_8_Knowledge_Graphs_WSD\validation_log.txt
+
+[PASS] Lab_9_Multilingual_NLP
+      Exit Code: 0
+      Output Files: 4
+      Files Generated:
+        - cross_lingual_similarity.png
+        - vocabulary_comparison.png
+        - zero_shot_transfer.png
+        - multilingual_analysis.csv
+      Log: b:\Data Science Projects(Own)\NLP_project\Lab_Projects\Lab_9_Multilingual_NLP\validation_log.txt
+
+[PASS] Lab_10_Research_Mini_Project
+      Exit Code: 0
+      Output Files: 5
+      Files Generated:
+        - confusion_matrices.png
+        - model_comparison.png
+        - training_curve.png
+        - model_comparison_results.csv
+        - summary_statistics.csv
+      Log: b:\Data Science Projects(Own)\NLP_project\Lab_Projects\Lab_10_Research_Mini_Project\validation_log.txt
+

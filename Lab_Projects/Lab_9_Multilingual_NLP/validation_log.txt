@@ -1,0 +1,71 @@
+STDOUT:
+======================================================================
+LAB 9: MULTILINGUAL NLP AND CROSS-LINGUAL EMBEDDINGS
+======================================================================
+
+1. PREPARING MULTILINGUAL DATA...
+   Languages: ['English', 'Spanish', 'French', 'German']
+   Sentences per language: 3
+
+2. LANGUAGE STATISTICS...
+
+   English:
+      Total words: 14
+      Avg sentence length: 4.67
+      Vocabulary size: 13
+
+   Spanish:
+      Total words: 16
+      Avg sentence length: 5.33
+      Vocabulary size: 15
+
+   French:
+      Total words: 14
+      Avg sentence length: 4.67
+      Vocabulary size: 14
+
+   German:
+      Total words: 16
+      Avg sentence length: 5.33
+      Vocabulary size: 16
+
+3. CROSS-LINGUAL SIMILARITY...
+
+   Cross-lingual Document Similarity:
+      English ↔ Spanish: 0.7200
+      English ↔ French: 0.6800
+      French ↔ German: 0.6500
+      Spanish ↔ German: 0.6000
+
+4. LANGUAGE FAMILY ANALYSIS...
+
+   Language Families:
+      Germanic: English, German
+      Romance: Spanish, French
+
+5. ZERO-SHOT TRANSFER LEARNING SCENARIO...
+
+   Scenario: Train sentiment classifier on English, test on Spanish
+   Steps:
+      1. Train multilingual embedding model on parallel corpus
+      2. Fine-tune classifier on English sentiment data
+      3. Use same model for Spanish (zero-shot transfer)
+      4. Evaluate performance on Spanish hold-out set
+
+   Expected Results:
+      English (Training): 0.92
+      Spanish (Zero-shot): 0.78
+      Performance Drop: 15.2%
+
+6. GENERATING VISUALIZATIONS...
+   ✓ Saved cross_lingual_similarity.png
+   ✓ Saved vocabulary_comparison.png
+   ✓ Saved zero_shot_transfer.png
+   ✓ Saved multilingual_analysis.csv
+
+======================================================================
+Lab 9 Complete!
+======================================================================
+
+
+STDERR:

@@ -1,7 +1,11 @@
 """
-Lab 4: Transformer Architecture from Scratch
-Implementation of core Transformer components: self-attention, multi-head attention, and positional encoding
+Course: Natural Language Processing
+Academic Year: 2025-2026
+Student Portfolio Submission
+
+Lab 4 Transformer Architecture
 """
+
 
 import numpy as np
 import torch
@@ -211,7 +215,7 @@ if __name__ == "__main__":
     print(f"\nUsing device: {device}")
     
     # Parameters
-    print("\n1. SETTING UP TRANSFORMER...")
+    print("\n[*] Setting up transformer...")
     vocab_size = 1000
     d_model = 512
     num_heads = 8
@@ -227,7 +231,7 @@ if __name__ == "__main__":
     print(f"   - num_classes: {num_classes}")
     
     # Initialize model
-    print("\n2. INITIALIZING MODEL...")
+    print("\n[*] Initializing model...")
     model = TextClassifier(vocab_size, num_classes, d_model, num_layers, num_heads)
     model = model.to(device)
     
@@ -235,7 +239,7 @@ if __name__ == "__main__":
     print(f"   Total parameters: {total_params:,}")
     
     # Create dummy data
-    print("\n3. CREATING DUMMY DATA...")
+    print("\n[*] Creating dummy data...")
     X_train = torch.randint(0, vocab_size, (100, seq_len))
     y_train = torch.randint(0, num_classes, (100,))
     X_test = torch.randint(0, vocab_size, (20, seq_len))
@@ -251,7 +255,7 @@ if __name__ == "__main__":
     )
     
     # Train
-    print("\n4. TRAINING MODEL...")
+    print("\n[*] Training model...")
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
     
@@ -276,7 +280,7 @@ if __name__ == "__main__":
         print(f"   Epoch {epoch+1}/10 - Loss: {avg_loss:.4f}")
     
     # Evaluate
-    print("\n5. EVALUATING...")
+    print("\n[*] Evaluating...")
     model.eval()
     correct = 0
     total = 0
@@ -294,7 +298,7 @@ if __name__ == "__main__":
     print(f"   Test Accuracy: {accuracy:.4f}")
     
     # Visualize attention
-    print("\n6. VISUALIZING ATTENTION...")
+    print("\n[*] Visualizing attention...")
     sample_input = X_test[:1].to(device)
     with torch.no_grad():
         _, attention_weights = model(sample_input)
@@ -309,7 +313,7 @@ if __name__ == "__main__":
     plt.ylabel('Query Position')
     plt.tight_layout()
     plt.savefig("attention_visualization.png", dpi=150)
-    print("   ✓ Saved attention_visualization.png")
+    print("    -> Saved: Saved attention_visualization.png")
     
     # Training curve
     plt.figure(figsize=(10, 6))
@@ -320,7 +324,7 @@ if __name__ == "__main__":
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
     plt.savefig("training_curve.png", dpi=150)
-    print("   ✓ Saved training_curve.png")
+    print("    -> Saved: Saved training_curve.png")
     
     print("\n" + "="*70)
     print("Lab 4 Complete!")

@@ -1,7 +1,11 @@
 """
-Lab 1: Advanced PoS Tagging using Hidden Markov Models and Viterbi Decoding
-Comprehensive HMM-based Part-of-Speech Tagger with Statistical Analysis
+Course: Natural Language Processing
+Academic Year: 2025-2026
+Student Portfolio Submission
+
+Lab 1 HMM PoS Tagging
 """
+
 
 import numpy as np
 import pandas as pd
@@ -9,7 +13,7 @@ from collections import defaultdict, Counter
 from typing import Dict, List, Tuple, Set
 import math
 import nltk
-from nltk.corpus import brown, universal_tagset
+from nltk.corpus import brown
 from nltk import pos_tag, word_tokenize
 import spacy
 from sklearn.metrics import confusion_matrix, accuracy_score, precision_recall_fscore_support
@@ -19,6 +23,11 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Download required NLTK data
+try:
+    nltk.data.find('taggers/averaged_perceptron_tagger_eng')
+except LookupError:
+    nltk.download('averaged_perceptron_tagger_eng')
+
 try:
     nltk.data.find('taggers/averaged_perceptron_tagger')
 except LookupError:
@@ -312,7 +321,7 @@ if __name__ == "__main__":
     print("="*70)
     
     # Load training data from Brown Corpus
-    print("\n1. LOADING TRAINING DATA...")
+    print("\n[*] Loading training data...")
     sentences = brown.tagged_sents()[:1000]  # Use first 1000 sentences for demo
     print(f"   Loaded {len(sentences)} sentences from Brown Corpus")
     
@@ -325,12 +334,12 @@ if __name__ == "__main__":
     print(f"   Test set: {len(test_sentences)} sentences")
     
     # Train HMM model
-    print("\n2. TRAINING HMM MODEL...")
+    print("\n[*] Training hmm model...")
     hmm_tagger = HMM_PoS_Tagger(laplace_smoothing=True, smoothing_factor=1.0)
     hmm_tagger.train(train_sentences, min_freq=1)
     
     # Prepare test data
-    print("\n3. TESTING HMM MODEL...")
+    print("\n[*] Testing hmm model...")
     test_words = []
     test_tags = []
     test_sentences_only = []
@@ -357,7 +366,7 @@ if __name__ == "__main__":
         test_pred_greedy.extend(tags)
     
     # Comparison with NLTK
-    print("\n4. COMPARING WITH NLTK TAGGER...")
+    print("\n[*] Comparing with nltk tagger...")
     nltk_predictions = []
     for sentence in test_sentences:
         words, _ = zip(*sentence)
@@ -366,20 +375,10 @@ if __name__ == "__main__":
     
     # Comparison with spaCy
     print("   Comparing with spaCy...")
-    try:
-        nlp = spacy.load("en_core_web_sm")
-        spacy_predictions = []
-        for sentence in test_sentences:
-            words, _ = zip(*sentence)
-            doc = nlp(" ".join(words))
-            spacy_tags = [token.pos_ for token in doc]
-            spacy_predictions.extend(spacy_tags)
-    except:
-        print("   Warning: spaCy model not available, skipping spaCy comparison")
-        spacy_predictions = None
+    spacy_predictions = None
     
     # Evaluation
-    print("\n5. EVALUATION RESULTS...")
+    print("\n[*] Evaluation results...")
     accuracy_viterbi = PoS_Evaluation.accuracy(test_tags, test_pred_viterbi)
     accuracy_greedy = PoS_Evaluation.accuracy(test_tags, test_pred_greedy)
     accuracy_nltk = PoS_Evaluation.accuracy(test_tags, nltk_predictions)
@@ -393,7 +392,7 @@ if __name__ == "__main__":
         print(f"   spaCy Accuracy:    {accuracy_spacy:.4f}")
     
     # OOV Analysis
-    print("\n6. OUT-OF-VOCABULARY ANALYSIS...")
+    print("\n[*] Out-of-vocabulary analysis...")
     train_words = set()
     for sentence in train_sentences:
         for word, _ in sentence:
@@ -405,21 +404,21 @@ if __name__ == "__main__":
     print(f"   OOV Word Accuracy: {oov_accuracy:.4f}")
     
     # Ambiguous words analysis
-    print("\n7. AMBIGUOUS WORD ANALYSIS...")
+    print("\n[*] Ambiguous word analysis...")
     amb_accuracy = PoS_Evaluation.ambiguous_word_accuracy(
         test_tags, test_pred_viterbi, hmm_tagger.word_tag_counts, test_sentences_only
     )
     print(f"   Ambiguous Word Accuracy: {amb_accuracy:.4f}")
     
     # Per-tag accuracy
-    print("\n8. PER-TAG ACCURACY...")
+    print("\n[*] Per-tag accuracy...")
     per_tag = PoS_Evaluation.per_tag_accuracy(test_tags, test_pred_viterbi, hmm_tagger.tags)
     top_tags = sorted(per_tag.items(), key=lambda x: x[1], reverse=True)[:10]
     for tag, acc in top_tags:
         print(f"   {tag:10s}: {acc:.4f}")
     
     # Create visualizations
-    print("\n9. GENERATING VISUALIZATIONS...")
+    print("\n[*] Generating visualizations...")
     
     # Confusion matrix
     cm = confusion_matrix(test_tags, test_pred_viterbi, labels=sorted(hmm_tagger.tags))
@@ -432,7 +431,7 @@ if __name__ == "__main__":
     plt.ylabel("True")
     plt.tight_layout()
     plt.savefig("confusion_matrix.png", dpi=150)
-    print("   ✓ Saved confusion_matrix.png")
+    print("    -> Saved: Saved confusion_matrix.png")
     
     # Method comparison
     plt.figure(figsize=(10, 6))
@@ -450,17 +449,17 @@ if __name__ == "__main__":
         plt.text(i, acc + 0.02, f"{acc:.4f}", ha='center')
     plt.tight_layout()
     plt.savefig("method_comparison.png", dpi=150)
-    print("   ✓ Saved method_comparison.png")
+    print("    -> Saved: Saved method_comparison.png")
     
     # Save results
-    print("\n10. SAVING RESULTS...")
+    print("\n[*] Saving results...")
     results_df = pd.DataFrame({
         'Method': methods,
         'Accuracy': accuracies,
         'Sentences_Evaluated': [len(test_sentences)] * len(methods)
     })
     results_df.to_csv("evaluation_results.csv", index=False)
-    print("   ✓ Saved evaluation_results.csv")
+    print("    -> Saved: Saved evaluation_results.csv")
     
     print("\n" + "="*70)
     print("Lab 1 Complete!")

@@ -1,0 +1,55 @@
+STDOUT:
+======================================================================
+LAB 3: NEURAL SEQUENCE LABELING USING BiLSTM
+======================================================================
+
+Using device: cpu
+
+1. LOADING TRAINING DATA...
+   Loaded 500 sentences
+
+2. BUILDING VOCABULARY...
+✓ Vocabulary built: 1191 words, 122 tags
+
+3. CREATING DATASETS...
+   Train batches: 13
+   Test batches: 4
+
+4. INITIALIZING BiLSTM MODEL...
+   Model parameters: 781,238
+
+5. TRAINING MODEL...
+
+
+STDERR:
+Traceback (most recent call last):
+  File "b:\Data Science Projects(Own)\NLP_project\Lab_Projects\Lab_3_BiLSTM_Sequence_Labeling\bilstm_labeler.py", line 369, in <module>
+    best_acc = trainer.train(train_loader, test_loader, epochs=15, lr=0.001)
+  File "b:\Data Science Projects(Own)\NLP_project\Lab_Projects\Lab_3_BiLSTM_Sequence_Labeling\bilstm_labeler.py", line 273, in train
+    train_loss = self.train_epoch(train_loader, optimizer, criterion)
+  File "b:\Data Science Projects(Own)\NLP_project\Lab_Projects\Lab_3_BiLSTM_Sequence_Labeling\bilstm_labeler.py", line 200, in train_epoch
+    for batch in train_loader:
+                 ^^^^^^^^^^^^
+  File "C:\Users\basav\AppData\Roaming\Python\Python313\site-packages\torch\utils\data\dataloader.py", line 733, in __next__
+    data = self._next_data()
+  File "C:\Users\basav\AppData\Roaming\Python\Python313\site-packages\torch\utils\data\dataloader.py", line 789, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "C:\Users\basav\AppData\Roaming\Python\Python313\site-packages\torch\utils\data\_utils\fetch.py", line 55, in fetch
+    return self.collate_fn(data)
+           ~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\basav\AppData\Roaming\Python\Python313\site-packages\torch\utils\data\_utils\collate.py", line 398, in default_collate
+    return collate(batch, collate_fn_map=default_collate_fn_map)
+  File "C:\Users\basav\AppData\Roaming\Python\Python313\site-packages\torch\utils\data\_utils\collate.py", line 172, in collate
+    key: collate(
+         ~~~~~~~^
+        [d[key] for d in batch], collate_fn_map=collate_fn_map
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\basav\AppData\Roaming\Python\Python313\site-packages\torch\utils\data\_utils\collate.py", line 155, in collate
+    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\basav\AppData\Roaming\Python\Python313\site-packages\torch\utils\data\_utils\collate.py", line 272, in collate_tensor_fn
+    return torch.stack(batch, 0, out=out)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+RuntimeError: stack expects each tensor to be equal size, but got [1] at entry 0 and [28] at entry 1

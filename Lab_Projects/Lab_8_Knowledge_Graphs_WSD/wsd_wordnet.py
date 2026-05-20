@@ -1,7 +1,11 @@
 """
-Lab 8: Knowledge Graphs and Word Sense Disambiguation
-Semantic understanding using WordNet and Lesk algorithm
+Course: Natural Language Processing
+Academic Year: 2025-2026
+Student Portfolio Submission
+
+Lab 8 Knowledge Graphs WSD
 """
+
 
 import nltk
 from nltk.corpus import wordnet as wn
@@ -18,12 +22,11 @@ try:
 except LookupError:
     nltk.download('wordnet')
 
-print("="*70)
-print("LAB 8: KNOWLEDGE GRAPHS AND WORD SENSE DISAMBIGUATION")
-print("="*70)
+print("
+--- Starting Lab 8 Knowledge Graphs WSD ---")
 
 # 1. WordNet exploration
-print("\n1. EXPLORING WORDNET...")
+print("\n[*] Exploring wordnet...")
 
 word = "bank"
 synsets = wn.synsets(word)
@@ -36,7 +39,7 @@ for i, synset in enumerate(synsets):
     print(f"      Examples: {synset.examples()}")
 
 # 2. Semantic relationships
-print("\n2. SEMANTIC RELATIONSHIPS...")
+print("\n[*] Semantic relationships...")
 
 test_word = "dog"
 synset = wn.synsets(test_word)[0]
@@ -63,7 +66,7 @@ for m in meronyms[:3]:
     print(f"      - {m.name()}: {m.definition()}")
 
 # 3. Word similarity
-print("\n3. WORD SIMILARITY METRICS...")
+print("\n[*] Word similarity metrics...")
 
 word1 = "dog"
 word2 = "cat"
@@ -85,7 +88,7 @@ print(f"      LCH: {synset1_dog.lch_similarity(synset1_car):.4f}")
 print(f"      WUPA: {synset1_dog.wup_similarity(synset1_car):.4f}")
 
 # 4. Lesk algorithm for Word Sense Disambiguation
-print("\n4. WORD SENSE DISAMBIGUATION (LESK ALGORITHM)...")
+print("\n[*] Word sense disambiguation (lesk algorithm)...")
 
 class LeskAlgorithm:
     @staticmethod
@@ -138,7 +141,7 @@ for sentence, word in test_sentences:
         print(f"   Definition: {result.definition()}")
 
 # 5. Visualizations
-print("\n5. GENERATING VISUALIZATIONS...")
+print("\n[*] Generating visualizations...")
 
 # Similarity matrix
 words_sample = ["dog", "cat", "car", "taxi", "puppy"]
@@ -167,7 +170,7 @@ sns.heatmap(similarity_matrix, annot=True, fmt='.2f', cmap='YlGn',
 plt.title('Word Similarity Matrix (WordUp Similarity)')
 plt.tight_layout()
 plt.savefig("similarity_matrix.png", dpi=150)
-print("   ✓ Saved similarity_matrix.png")
+print("    -> Saved: Saved similarity_matrix.png")
 
 # Synset distribution
 synset_counts = Counter()
@@ -181,7 +184,7 @@ plt.ylabel('Number of Synsets')
 plt.title('Polysemy - Number of Senses per Word')
 plt.tight_layout()
 plt.savefig("synset_distribution.png", dpi=150)
-print("   ✓ Saved synset_distribution.png")
+print("    -> Saved: Saved synset_distribution.png")
 
 # Save results
 results = pd.DataFrame({
@@ -189,8 +192,7 @@ results = pd.DataFrame({
     'Num Senses': list(synset_counts.values())
 })
 results.to_csv("word_senses.csv", index=False)
-print("   ✓ Saved word_senses.csv")
+print("    -> Saved: Saved word_senses.csv")
 
-print("\n" + "="*70)
-print("Lab 8 Complete!")
-print("="*70)
+print("
+--- Lab 8 Knowledge Graphs WSD Execution Finished ---")

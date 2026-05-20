@@ -1,0 +1,36 @@
+STDOUT:
+======================================================================
+LAB 7: LANGUAGE MODELING WITH GPT AND AUTOREGRESSIVE GENERATION
+======================================================================
+
+Using device: cpu
+
+1. SETTING UP LANGUAGE MODEL...
+   ✓ Model initialized with 1,306,600 parameters
+
+2. TRAINING LANGUAGE MODEL...
+   Epoch 2/10: Loss = 6.8532
+   Epoch 4/10: Loss = 6.5404
+   Epoch 6/10: Loss = 6.2243
+   Epoch 8/10: Loss = 5.7261
+   Epoch 10/10: Loss = 5.1872
+
+3. GENERATING TEXT WITH DIFFERENT STRATEGIES...
+   Greedy:        [1, 2, 3, 288, 551, 551, 314, 619, 619, 298] ... 
+   Top-k (k=5):   [1, 2, 3, 53, 53, 53, 100, 494, 100, 288] ...
+   Nucleus (p=0.9): [1, 2, 3, 725, 434, 631, 441, 781, 248, 106] ...
+
+4. CALCULATING PERPLEXITY...
+   Perplexity: 2082.3494
+
+5. GENERATING VISUALIZATIONS...
+   ✓ Saved training_curve.png
+   ✓ Saved decoding_comparison.png
+   ✓ Saved evaluation_results.csv
+
+======================================================================
+Lab 7 Complete!
+======================================================================
+
+
+STDERR:
